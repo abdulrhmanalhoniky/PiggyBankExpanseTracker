@@ -1,6 +1,6 @@
 # Expense Tracker Application
 
-A lightweight, high-performance cross-platform desktop/mobile expense management application built with Python, KivyMD, and SQLite. Designed with a modern dark UI to track, categorize, and manage daily financial records smoothly without heavy asset overhead.
+A lightweight, high-performance cross-platform desktop/mobile expense management application built with Python, KivyMD, and SQLite. Designed with a lighy UI can be changed to dark mod if the user wanted  to track, categorize, and manage daily financial records smoothly without heavy asset overhead.
 
 ## 🛠️ Technologies Used
 * **Python** - Core application logic and data handling.
