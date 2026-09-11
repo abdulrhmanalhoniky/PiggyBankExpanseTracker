@@ -1,0 +1,65 @@
+<AddFund>:
+    MDScreen:
+        md_bg_color: self.theme_cls.backgroundColor
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        MDTopAppBar:
+            id: topbaraction
+            type: "small"
+            theme_bg_color: "Custom"
+            md_bg_color: hex_color("#ff00aae0")
+
+            MDTopAppBarLeadingButtonContainer:
+                MDActionTopAppBarButton:
+                    icon: "home"
+                    on_release: app.root.current = "main"       
+                MDActionTopAppBarButton:
+                    icon: "theme-light-dark"
+                    on_release: app.switch_theme_style()
+                        
+            MDTopAppBarTitle:
+                text: "PiggyBankExpanseTracker"
+                halign: "center"
+
+            MDTopAppBarTrailingButtonContainer:
+                MDActionTopAppBarButton:
+                    id: account_button
+                    icon: "account-circle-outline"
+                    on_release: app.open_account_menu(self)
+        AnchorLayout:
+            anchor_x: "center"
+            anchor_y: "center"
+
+            MDCard:
+                size_hint: None, None
+                size: "320dp", "350dp"
+                padding: "16dp"
+                elevation: 2
+                style: "elevated"
+
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    spacing: "20dp"
+                    adaptive_height: True
+                    pos_hint: {"center_x": .5, "center_y": .5}
+
+                    MDLabel:
+                        text: "Add New Funds"
+                        style: "headline-small"
+                        halign: "center"
+                        adaptive_height: True
+
+                    MDTextField:
+                        id: fund_amount
+                        mode: "outlined"
+                        input_filter: "float"
+                        MDTextFieldHintText:
+                            text: "Amount"
+
+                    MDButton:
+                        style: "filled"
+                        pos_hint: {"center_x": .5}
+                        on_release: root.save_income()
+                        MDButtonText:
+                            text: "Save Income"
