@@ -1,0 +1,179 @@
+#: import hex_color kivy.utils.get_color_from_hex
+
+<MainScreen>:
+    MDNavigationLayout:
+        ScreenManager:
+            MDScreen:
+                md_bg_color: self.theme_cls.backgroundColor
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    MDTopAppBar:
+                        type: "small"
+                        theme_bg_color: "Custom"
+                        md_bg_color: hex_color("#ff00aae0")
+                        MDTopAppBarLeadingButtonContainer:
+                            MDActionTopAppBarButton:
+                                icon: "menu"
+                            MDActionTopAppBarButton:
+                                icon: "theme-light-dark"
+                                on_release: app.switch_theme_style()
+                        MDTopAppBarTitle:
+                            text: "PiggyBankExpanseTracker"
+                            halign: "center"
+                        MDTopAppBarTrailingButtonContainer:
+                            MDActionTopAppBarButton:
+                                id: account_button
+                                icon: "account-circle-outline"
+                                on_release: app.open_account_menu(self)
+
+                    BoxLayout:
+                        orientation: 'vertical'
+                        spacing: "10dp"
+                        padding: "20dp"
+                        size_hint_y: None
+                        height: self.minimum_height
+
+                        MDCard:
+                            size_hint: None, None
+                            size: "320dp", "80dp"
+                            pos_hint: {'center_x': 0.5}
+                            padding: "10dp"
+                            MDLabel:
+                                id: balance_label
+                                text: "Balance: $0.00"
+                                halign: "left"
+                                vertical_align: "center"
+
+                        MDCard:
+                            size_hint: None, None
+                            size: "320dp", "80dp"
+                            pos_hint: {'center_x': 0.5}
+                            padding: "10dp"
+                            MDLabel:
+                                id: total_label
+                                text: "Savings: $0.00"
+                                halign: "left"
+                                vertical_align: "center"
+
+                    AnchorLayout:
+                        anchor_x: "center"
+                        anchor_y: "center" 
+                        GridLayout:
+                            cols:4
+                            padding:10
+                            adaptive_height: True
+                            ImageGrid:
+                                orientation: "vertical"
+                                adaptive_height: True
+                                padding: "12dp"
+                                spacing: "8dp"
+                                on_press: app.root.current = 'addfund'
+                                Image:
+                                    source: "assist/add.png"
+                                    size_hint: None, None
+                                    size: 64, 64
+                                    pos_hint: {'center_x': 0.5}
+                                    adaptive_height: True
+                                MDLabel:
+                                    text: "Add Fund"
+                                    halign: "center"
+                                    adaptive_height: True
+                                    style: "label-large"
+                                    theme_text_color: "Primary"
+                            ImageGrid:
+                                orientation: "vertical"
+                                adaptive_height: True
+                                padding: "12dp"
+                                spacing: "8dp"
+                                on_press: app.root.current = 'bill'
+                                Image:
+                                    source: "assist/billing.png"
+                                    size_hint: None, None
+                                    size: 64, 64
+                                    pos_hint: {'center_x': 0.5}
+                                    adaptive_height: True
+                                MDLabel:
+                                    text: "Add Bill"
+                                    halign: "center"
+                                    adaptive_height: True
+                                    style: "label-large"
+                                    theme_text_color: "Primary"
+                            ImageGrid:
+                                orientation: "vertical"
+                                adaptive_height: True
+                                padding: "12dp"
+                                spacing: "8dp"
+                                on_press: app.root.current = 'target'
+                                Image:
+                                    source: "assist/targeting.png"
+                                    size_hint: None, None
+                                    size: 64, 64
+                                    pos_hint: {'center_x': 0.5}
+                                    adaptive_height: True
+                                MDLabel:
+                                    text: "Target"
+                                    halign: "center"
+                                    adaptive_height: True
+                                    style: "label-large"
+                                    theme_text_color: "Primary"
+                            ImageGrid:
+                                orientation: "vertical"
+                                adaptive_height: True
+                                padding: "12dp"
+                                spacing: "8dp"
+                                on_press: app.root.current = 'saveingsview'
+                                Image:
+                                    source: "assist/time.png"
+                                    size_hint: None, None
+                                    size: 64, 64
+                                    pos_hint: {'center_x': 0.5}
+                                    adaptive_height: True
+                                MDLabel:
+                                    text: "Saveing Overview"
+                                    halign: "center"
+                                    adaptive_height: True
+                                    style: "label-large"
+                                    theme_text_color: "Primary"   
+
+                    MDBoxLayout:
+                        orientation: "horizontal"
+                        spacing: "10dp"
+                        padding: "10dp"
+                        size_hint_y: 1 
+                        MDBoxLayout:
+                            orientation: "vertical"
+                            size_hint_x: .5
+                            MDLabel:
+                                text: "Expanses List"
+                                style: "title-small"
+                                adaptive_height: True
+                            MDScrollView:
+                                do_scroll_x: False
+                                MDBoxLayout:
+                                    id: bills_history_list
+                                    orientation: "vertical"
+                                    adaptive_height: True
+                                    spacing: "8dp"
+
+                        MDBoxLayout:
+                            orientation: "vertical"
+                            size_hint_x: .5
+                            spacing: "10dp"
+                            MDLabel:
+                                text: "Goals"
+                                style: "title-small"
+                                adaptive_height: True
+                            MDBoxLayout:
+                                id: goals_preview_list
+                                orientation: "vertical"
+                                adaptive_height: True
+                                spacing: "14dp"
+                            Widget:
+                                size_hint_y: 1
+                            MDButton:
+                                style: "tonal"
+                                pos_hint: {"center_x": .5}
+                                on_release: app.root.current = "goalspreview"
+                                MDButtonText:
+                                    text: "All Goals"
